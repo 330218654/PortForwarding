@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Btn_Access_Text" xml:space="preserve">
+    <value>允许</value>
+  </data>
+  <data name="Btn_Clear_Text" xml:space="preserve">
+    <value>清除所有</value>
+  </data>
+  <data name="Btn_Defense_Text" xml:space="preserve">
+    <value>阻止</value>
+  </data>
+  <data name="Btn_Export_Text" xml:space="preserve">
+    <value>导出</value>
+  </data>
+  <data name="Btn_Import_Text" xml:space="preserve">
+    <value>导入</value>
+  </data>
+  <data name="Btn_Manager_Text" xml:space="preserve">
+    <value>管理</value>
+  </data>
+  <data name="Btn_ReLoad_Text" xml:space="preserve">
+    <value>重新加载</value>
+  </data>
+  <data name="Btn_Remove_Text" xml:space="preserve">
+    <value>移除选中</value>
+  </data>
+  <data name="Btn_ReSet_Text" xml:space="preserve">
+    <value>重置选中</value>
+  </data>
+  <data name="Btn_RmCountlt_Text" xml:space="preserve">
+    <value>移除访问次数小于</value>
+  </data>
+  <data name="Btn_RmHourAgo_Text" xml:space="preserve">
+    <value>移除N小时前</value>
+  </data>
+  <data name="Btn_Start_Text_Start" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="Btn_Start_Text_Stop" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="Chk_LogAccept_Text" xml:space="preserve">
+    <value>连接日志</value>
+  </data>
+  <data name="Chk_LogClose_Text" xml:space="preserve">
+    <value>断开日志</value>
+  </data>
+  <data name="Chk_LogRevSize_Text" xml:space="preserve">
+    <value>接受日志</value>
+  </data>
+  <data name="Chk_LogSndSize_Text" xml:space="preserve">
+    <value>发送日志</value>
+  </data>
+  <data name="CMH_Count_Text" xml:space="preserve">
+    <value>访问次数</value>
+  </data>
+  <data name="CMH_DefenseTime_Text" xml:space="preserve">
+    <value>防御次数</value>
+  </data>
+  <data name="CMH_IP_Text" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="CMH_IsDefensed_Text" xml:space="preserve">
+    <value>是否防御</value>
+  </data>
+  <data name="CMH_LastTime_Text" xml:space="preserve">
+    <value>最后访问</value>
+  </data>
+  <data name="CMH_RevCount_Text" xml:space="preserve">
+    <value>接受字节</value>
+  </data>
+  <data name="CMH_Serial_Text" xml:space="preserve">
+    <value>序号</value>
+  </data>
+  <data name="CMH_SndCount_Text" xml:space="preserve">
+    <value>发送字节</value>
+  </data>
+  <data name="Frm_Main_Text" xml:space="preserve">
+    <value>端口防火墙（Port Firewall）</value>
+  </data>
+  <data name="GPB_ManagerClient_Text" xml:space="preserve">
+    <value>管理客户端</value>
+  </data>
+  <data name="Lab_Dst_Text" xml:space="preserve">
+    <value>到：</value>
+  </data>
+  <data name="Lab_RevBufSize_Text" xml:space="preserve">
+    <value>发送缓存：</value>
+  </data>
+  <data name="Lab_SndBufSize_Text" xml:space="preserve">
+    <value>接受缓存：</value>
+  </data>
+  <data name="Lab_Src_Text" xml:space="preserve">
+    <value>源：</value>
+  </data>
+  <data name="IsFalse" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="IsTrue" xml:space="preserve">
+    <value>是</value>
+  </data>
+</root>
