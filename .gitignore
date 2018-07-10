@@ -101,9 +101,8 @@ ipch/
 *.vspx
 *.sap
 
-# TFS
+# TFS 2012 Local Workspace
 $tf/
-*.vspscc
 
 # Guidance Automation Toolkit
 *.gpState
