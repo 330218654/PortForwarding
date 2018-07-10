@@ -54,17 +54,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Sy.Data.Serializable">
-      <HintPath>..\..\..\yimiProjects\yimiLib\Sy.Data.Serializable.dll</HintPath>
+      <HintPath>..\Lib\Sy.Data.Serializable.dll</HintPath>
     </Reference>
     <Reference Include="Sy.Threading">
-      <HintPath>..\..\..\yimiProjects\yimiLib\Sy.Threading.dll</HintPath>
+      <HintPath>..\Lib\Sy.Threading.dll</HintPath>
     </Reference>
-    <Reference Include="Sy.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\yimiProjects\yimiLib\Sy.UI.dll</HintPath>
+    <Reference Include="Sy.UI">
+      <HintPath>..\Lib\Sy.UI.dll</HintPath>
     </Reference>
     <Reference Include="SyLib">
-      <HintPath>..\..\SyLib\DLL\SyLib.dll</HintPath>
+      <HintPath>..\Lib\SyLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

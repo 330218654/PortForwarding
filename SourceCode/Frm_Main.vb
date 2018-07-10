@@ -165,7 +165,6 @@ Public Class Frm_Main
         I18N()
 
         Text += $" [V{Reflection.Assembly.GetExecutingAssembly.GetName.Version.ToString} By:admin@sml2.com]"
-        if 
     End Sub
 
     Private Sub I18N()

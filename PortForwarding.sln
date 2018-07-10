@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PortForwarding", "PortForwarding\PortForwarding.vbproj", "{FE84A787-DB65-4E51-AC48-55FC713F6EA9}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PortForwarding", "SourceCode\PortForwarding.vbproj", "{FE84A787-DB65-4E51-AC48-55FC713F6EA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,8 +27,8 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://sml2.visualstudio.com/
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = PortForwarding\\PortForwarding.vbproj
-		SccProjectName1 = PortForwarding
-		SccLocalPath1 = PortForwarding
+		SccProjectUniqueName1 = SourceCode\\PortForwarding.vbproj
+		SccProjectName1 = SourceCode
+		SccLocalPath1 = SourceCode
 	EndGlobalSection
 EndGlobal
