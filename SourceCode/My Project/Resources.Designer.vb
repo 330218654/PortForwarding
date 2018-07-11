@@ -61,7 +61,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查找类似 Access 的本地化字符串。
+        '''  查找类似 AccessCheck 的本地化字符串。
         '''</summary>
         Friend ReadOnly Property Btn_Access_Text() As String
             Get
@@ -79,7 +79,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查找类似 Defense 的本地化字符串。
+        '''  查找类似 DefenseCheck 的本地化字符串。
         '''</summary>
         Friend ReadOnly Property Btn_Defense_Text() As String
             Get
