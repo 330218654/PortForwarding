@@ -3,6 +3,7 @@ Imports Sy.Threading
 
 Public Class Frm_Main
     Private MainThread As Thread
+    Private MainSocket As Socket
     Private SrcPort As Integer
     Private DstPort As Integer
 
@@ -19,6 +20,7 @@ Public Class Frm_Main
             MainThread = New Thread(AddressOf MainSub)
             MainThread.Start()
         Else
+
             If MainThread IsNot Nothing Then MainThread.Abort()
         End If
         Button.Enabled = True
@@ -37,10 +39,10 @@ Public Class Frm_Main
         End If
     End Sub
     Public Sub MainSub()
-        Dim Socket As New Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
+        MainSocket = New Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
         Try
-            Socket.Bind(New Net.IPEndPoint(Net.IPAddress.Parse("0.0.0.0"), SrcPort))
-            Socket.Listen(32) '允许N个排队,多余的拒绝服务
+            MainSocket.Bind(New Net.IPEndPoint(Net.IPAddress.Parse("0.0.0.0"), SrcPort))
+            MainSocket.Listen(32) '允许N个排队,多余的拒绝服务
             Log.AppendLogOnThreadAsync($"Bind Success   Port:{SrcPort}")
         Catch ex As Exception
             Log.AppendLogOnThreadAsync($"Bind Fail:{ex.Message}")
@@ -49,11 +51,12 @@ Public Class Frm_Main
         End Try
         Try
             Do
-                Dim NewSocket As Socket = Socket.Accept
+                Dim NewSocket As Socket = MainSocket.Accept
+                If LogNormal Then Log.AppendLogOnThreadAsync($"Accpet:{NewSocket.RemoteEndPoint.ToString}")
                 ForwardSub(NewSocket)
             Loop
-        Catch ex As ThreadAbort
-            If Socket IsNot Nothing Then Socket.Close()
+        Catch ex As Exception
+            If MainSocket IsNot Nothing Then MainSocket.Close()
             Invoke(Sub() UIAdt(False))
         End Try
     End Sub
@@ -63,7 +66,7 @@ Public Class Frm_Main
                        If Client.CheckDefense Then
                            If LogNormal Then Log.AppendLogOnThread($"Defense:{Client.IP} , Times:{Client.DefenseTimes}")
                        Else
-                           If LogNormal Then Log.AppendLogOnThread($"Accept:{Client.ToString }  Count:{Client.Dic.Count  }")
+                           If LogNormal Then Log.AppendLogOnThread($"Access:{Client.ToString}  Count:{Client.Dic.Count}")
                            Dim MRES As New Threading.ManualResetEventSlim(False)
                            Dim DstSocket As Socket = Nothing
                            Dim RevTask As New Threading.Tasks.Task(

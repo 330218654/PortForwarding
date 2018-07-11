@@ -13,3 +13,7 @@ V18.07.11.0
 	EXE:Release Socket When ThreadAbort
 V18.07.11.1
 	EXE:backlog=32
+V18.07.11.1
+	DLL:Threading Throw Sy Exception
+	EXE:Can not Stop
+
