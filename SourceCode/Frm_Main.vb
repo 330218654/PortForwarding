@@ -379,6 +379,6 @@ Public Class Frm_Main
                 End If
             Next
         End If
-        ReLoadClient()
+        LoadClient()
     End Sub
 End Class
