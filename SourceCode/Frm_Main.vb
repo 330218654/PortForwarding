@@ -20,7 +20,6 @@ Public Class Frm_Main
             MainThread.Start()
         Else
             If MainThread IsNot Nothing Then MainThread.Abort()
-            UIAdt(False)
         End If
         Button.Enabled = True
     End Sub
@@ -41,17 +40,22 @@ Public Class Frm_Main
         Dim Socket As New Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
         Try
             Socket.Bind(New Net.IPEndPoint(Net.IPAddress.Parse("0.0.0.0"), SrcPort))
-            Socket.Listen(10) '允许10个排队,多余的拒绝服务
+            Socket.Listen(32) '允许N个排队,多余的拒绝服务
             Log.AppendLogOnThreadAsync($"Bind Success   Port:{SrcPort}")
         Catch ex As Exception
             Log.AppendLogOnThreadAsync($"Bind Fail:{ex.Message}")
             Invoke(Sub() UIAdt(False))
             Exit Sub
         End Try
-        Do
-            Dim NewSocket As Socket = Socket.Accept
-            ForwardSub(NewSocket)
-        Loop
+        Try
+            Do
+                Dim NewSocket As Socket = Socket.Accept
+                ForwardSub(NewSocket)
+            Loop
+        Catch ex As ThreadAbort
+            If Socket IsNot Nothing Then Socket.Close()
+            Invoke(Sub() UIAdt(False))
+        End Try
     End Sub
     Public Sub ForwardSub(Socket As Socket)
         Dim Task = Sub()

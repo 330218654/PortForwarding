@@ -9,3 +9,5 @@ V18.07.10.3
 	EXE:修改策略所有访问平均数据量改为每10次平均数据量
 V18.07.10.4
 	EXE:导入IPList后重新刷新UI
+V18.07.11.0
+	EXE:Release Socket When ThreadAbort
