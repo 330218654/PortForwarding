@@ -11,3 +11,5 @@ V18.07.10.4
 	EXE:导入IPList后重新刷新UI
 V18.07.11.0
 	EXE:Release Socket When ThreadAbort
+V18.07.11.1
+	EXE:backlog=32
