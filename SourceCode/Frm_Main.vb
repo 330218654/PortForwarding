@@ -375,7 +375,7 @@ Public Class Frm_Main
                     Dim Imc = kp.Value
                     c.AddDateRev(Imc.DateRev)
                     c.AddDateSnd(Imc.DateSnd)
-                    c.Count += (Imc.DateSnd)
+                    c.Count += (Imc.Count)
                     c.IsDefense = c.IsDefense Or Imc.IsDefense
                     c.DefenseTimes += Imc.DefenseTimes
                 Else
@@ -387,5 +387,11 @@ Public Class Frm_Main
             Next
         End If
         LoadClient()
+    End Sub
+
+
+
+    Private Sub Ltv_Client_ColumnClick(sender As Object, e As ColumnClickEventArgs) Handles Ltv_Client.ColumnClick
+        Sy.UI.Common.ListViewHelper.ListView_ColumnClick(sender, e)
     End Sub
 End Class
