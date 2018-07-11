@@ -236,9 +236,9 @@ Partial Class Frm_Main
         Me.GPB_ManagerClient.Controls.Add(Me.Btn_ReLoad)
         Me.GPB_ManagerClient.Controls.Add(Me.Ltv_Client)
         Me.GPB_ManagerClient.Controls.Add(Me.Button1)
-        Me.GPB_ManagerClient.Location = New System.Drawing.Point(8, 129)
+        Me.GPB_ManagerClient.Location = New System.Drawing.Point(8, 12)
         Me.GPB_ManagerClient.Name = "GPB_ManagerClient"
-        Me.GPB_ManagerClient.Size = New System.Drawing.Size(836, 441)
+        Me.GPB_ManagerClient.Size = New System.Drawing.Size(836, 558)
         Me.GPB_ManagerClient.TabIndex = 56
         Me.GPB_ManagerClient.TabStop = False
         Me.GPB_ManagerClient.Text = "Manager Client"

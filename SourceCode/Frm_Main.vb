@@ -20,10 +20,10 @@ Public Class Frm_Main
             MainThread = New Thread(AddressOf MainSub)
             MainThread.Start()
         Else
-
             If MainThread IsNot Nothing Then MainThread.Abort()
+            If MainSocket IsNot Nothing Then MainSocket.Close()
         End If
-        Button.Enabled = True
+            Button.Enabled = True
     End Sub
     Private Sub UIAdt(isStart As Boolean)
         If isStart Then
