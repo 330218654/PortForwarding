@@ -12,6 +12,54 @@ Public Class Frm_Main
 
     Private StrStart As String = My.Resources.Btn_Start_Text_Start
     Private StrStop As String = My.Resources.Btn_Start_Text_Stop
+
+    Private Sub Frm_Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        NUD_RevBufferSize.Value = DefRevBufferSize
+        NUD_SndBufferSize.Value = DefSndBufferSize
+        Btn_Start.Text = StrStart
+
+        For i As UIFilter = UIFilter.Min + 1 To UIFilter.Max - 1
+            Cmb_UIFilter.Items.Add(i.ToString)
+        Next
+        Cmb_UIFilter.SelectedIndex = 0
+
+        I18N()
+
+        Text += $" [V{Reflection.Assembly.GetExecutingAssembly.GetName.Version.ToString} By:admin@sml2.com]"
+    End Sub
+
+    Private Sub I18N()
+        Btn_Access.Text = My.Resources.Btn_Access_Text
+        Btn_Clear.Text = My.Resources.Btn_Clear_Text
+        Btn_Defense.Text = My.Resources.Btn_Defense_Text
+        Btn_Export.Text = My.Resources.Btn_Export_Text
+        Btn_Import.Text = My.Resources.Btn_Import_Text
+        Btn_Manager.Text = My.Resources.Btn_Manager_Text
+        Btn_ReLoad.Text = My.Resources.Btn_ReLoad_Text
+        Btn_Remove.Text = My.Resources.Btn_Remove_Text
+        Btn_ReSet.Text = My.Resources.Btn_ReSet_Text
+        Btn_RmCountlt.Text = My.Resources.Btn_RmCountlt_Text
+        Btn_RmHourAgo.Text = My.Resources.Btn_RmHourAgo_Text
+        Btn_Start.Text = My.Resources.Btn_Start_Text_Start
+        Chk_LogAccept.Text = My.Resources.Chk_LogAccept_Text
+        Chk_LogClose.Text = My.Resources.Chk_LogClose_Text
+        Chk_LogRevSize.Text = My.Resources.Chk_LogRevSize_Text
+        Chk_LogSndSize.Text = My.Resources.Chk_LogSndSize_Text
+        CMH_Count.Text = My.Resources.CMH_Count_Text
+        CMH_DefenseTime.Text = My.Resources.CMH_DefenseTime_Text
+        CMH_IP.Text = My.Resources.CMH_IP_Text
+        CMH_IsDefensed.Text = My.Resources.CMH_IsDefensed_Text
+        CMH_LastTime.Text = My.Resources.CMH_LastTime_Text
+        CMH_RevCount.Text = My.Resources.CMH_RevCount_Text
+        CMH_Serial.Text = My.Resources.CMH_Serial_Text
+        CMH_SndCount.Text = My.Resources.CMH_SndCount_Text
+        Text = My.Resources.Frm_Main_Text
+        GPB_ManagerClient.Text = My.Resources.GPB_ManagerClient_Text
+        Lab_Dst.Text = My.Resources.Lab_Dst_Text
+        Lab_RevBufSize.Text = My.Resources.Lab_RevBufSize_Text
+        Lab_SndBufSize.Text = My.Resources.Lab_SndBufSize_Text
+        Lab_Src.Text = My.Resources.Lab_Src_Text
+    End Sub
     Private Sub Btn_Start_Click(sender As Object, e As EventArgs) Handles Btn_Start.Click
         Dim Button As Button = sender
         Button.Enabled = False
@@ -159,53 +207,7 @@ Public Class Frm_Main
         RevBufferSize = NumericUpDown.Value - 1
     End Sub
 
-    Private Sub Frm_Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        NUD_RevBufferSize.Value = DefRevBufferSize
-        NUD_SndBufferSize.Value = DefSndBufferSize
-        Btn_Start.Text = StrStart
 
-        For i As UIFilter = UIFilter.Min + 1 To UIFilter.Max - 1
-            Cmb_UIFilter.Items.Add(i.ToString)
-        Next
-        Cmb_UIFilter.SelectedIndex = 0
-
-        I18N()
-
-        Text += $" [V{Reflection.Assembly.GetExecutingAssembly.GetName.Version.ToString} By:admin@sml2.com]"
-    End Sub
-
-    Private Sub I18N()
-        Btn_Access.Text = My.Resources.Btn_Access_Text
-        Btn_Clear.Text = My.Resources.Btn_Clear_Text
-        Btn_Defense.Text = My.Resources.Btn_Defense_Text
-        Btn_Export.Text = My.Resources.Btn_Export_Text
-        Btn_Import.Text = My.Resources.Btn_Import_Text
-        Btn_Manager.Text = My.Resources.Btn_Manager_Text
-        Btn_ReLoad.Text = My.Resources.Btn_ReLoad_Text
-        Btn_Remove.Text = My.Resources.Btn_Remove_Text
-        Btn_ReSet.Text = My.Resources.Btn_ReSet_Text
-        Btn_RmCountlt.Text = My.Resources.Btn_RmCountlt_Text
-        Btn_RmHourAgo.Text = My.Resources.Btn_RmHourAgo_Text
-        Btn_Start.Text = My.Resources.Btn_Start_Text_Start
-        Chk_LogAccept.Text = My.Resources.Chk_LogAccept_Text
-        Chk_LogClose.Text = My.Resources.Chk_LogClose_Text
-        Chk_LogRevSize.Text = My.Resources.Chk_LogRevSize_Text
-        Chk_LogSndSize.Text = My.Resources.Chk_LogSndSize_Text
-        CMH_Count.Text = My.Resources.CMH_Count_Text
-        CMH_DefenseTime.Text = My.Resources.CMH_DefenseTime_Text
-        CMH_IP.Text = My.Resources.CMH_IP_Text
-        CMH_IsDefensed.Text = My.Resources.CMH_IsDefensed_Text
-        CMH_LastTime.Text = My.Resources.CMH_LastTime_Text
-        CMH_RevCount.Text = My.Resources.CMH_RevCount_Text
-        CMH_Serial.Text = My.Resources.CMH_Serial_Text
-        CMH_SndCount.Text = My.Resources.CMH_SndCount_Text
-        Text = My.Resources.Frm_Main_Text
-        GPB_ManagerClient.Text = My.Resources.GPB_ManagerClient_Text
-        Lab_Dst.Text = My.Resources.Lab_Dst_Text
-        Lab_RevBufSize.Text = My.Resources.Lab_RevBufSize_Text
-        Lab_SndBufSize.Text = My.Resources.Lab_SndBufSize_Text
-        Lab_Src.Text = My.Resources.Lab_Src_Text
-    End Sub
 
     Enum UIFilter
         Min = -1
