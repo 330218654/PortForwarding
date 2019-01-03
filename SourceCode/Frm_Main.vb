@@ -6,6 +6,8 @@ Public Class Frm_Main
     Private MainSocket As Socket
     Private SrcPort As Integer
     Private DstPort As Integer
+    Private SrcIP As String = "0.0.0.0"
+    Private DstIP As String = "172.31.7.164"
 
     Private Const DefRevBufferSize As Integer = 1024
     Private Const DefSndBufferSize As Integer = 8192
@@ -14,8 +16,11 @@ Public Class Frm_Main
     Private StrStop As String = My.Resources.Btn_Start_Text_Stop
 
     Private Sub Frm_Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Sy.UnhandleException.SetHandle(My.Application)
         NUD_RevBufferSize.Value = DefRevBufferSize
         NUD_SndBufferSize.Value = DefSndBufferSize
+        Txt_Src.Text = SrcIP
+        Txt_Dst.Text = DstIP
         Btn_Start.Text = StrStart
 
         For i As UIFilter = UIFilter.Min + 1 To UIFilter.Max - 1
@@ -75,21 +80,28 @@ Public Class Frm_Main
     End Sub
     Private Sub UIAdt(isStart As Boolean)
         If isStart Then
+            SrcIP = Txt_Src.Text
+            Txt_Src.Enabled = False
             SrcPort = NUD_Src.Value
             NUD_Src.Enabled = False
+            DstIP = Txt_Dst.Text
+            Txt_Dst.Enabled = False
             DstPort = NUD_Dst.Value
             NUD_Dst.Enabled = False
             Btn_Start.Text = StrStop
         Else
+            Txt_Dst.Enabled = True
+            Txt_Src.Enabled = True
             NUD_Src.Enabled = True
             NUD_Dst.Enabled = True
+
             Btn_Start.Text = StrStart
         End If
     End Sub
     Public Sub MainSub()
         MainSocket = New Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
         Try
-            MainSocket.Bind(New Net.IPEndPoint(Net.IPAddress.Parse("0.0.0.0"), SrcPort))
+            MainSocket.Bind(New Net.IPEndPoint(Net.IPAddress.Parse(SrcIP), SrcPort))
             MainSocket.Listen(32) '允许N个排队,多余的拒绝服务
             Log.AppendLogOnThreadAsync($"Bind Success   Port:{SrcPort}")
         Catch ex As Exception
@@ -99,8 +111,9 @@ Public Class Frm_Main
         End Try
         Try
             Do
+                If LogNormal Then Log.AppendLogOnThreadAsync($"[AM]Wait Accpet")
                 Dim NewSocket As Socket = MainSocket.Accept
-                If LogNormal Then Log.AppendLogOnThreadAsync($"Accpet:{NewSocket.RemoteEndPoint.ToString}")
+                If LogNormal Then Log.AppendLogOnThreadAsync($"[BM]Accpet:{NewSocket.RemoteEndPoint.ToString}")
                 ForwardSub(NewSocket)
             Loop
         Catch ex As Exception
@@ -108,52 +121,65 @@ Public Class Frm_Main
             Invoke(Sub() UIAdt(False))
         End Try
     End Sub
+    Private CTB As Integer = 0
+    Private ETE As Integer = 0
+    Private DRB As Integer = 0
+    Private DRE As Integer = 0
+    Private DSB As Integer = 0
+    Private DSE As Integer = 0
     Public Sub ForwardSub(Socket As Socket)
         Dim Task = Sub()
+                       CTB += 1
                        Dim Client As Client = Client.Find(Socket.RemoteEndPoint)
                        If Client.CheckDefense Then
-                           If LogNormal Then Log.AppendLogOnThread($"Defense:{Client.IP} , Times:{Client.DefenseTimes}")
+                           If LogNormal Then Log.AppendLogOnThread($"[CT]Defense:{Client.IP} , Times:{Client.DefenseTimes} CTB[{CTB}]")
                        Else
-                           If LogNormal Then Log.AppendLogOnThread($"Access:{Client.ToString}  Count:{Client.Dic.Count}")
+                           If LogNormal Then Log.AppendLogOnThread($"[CT]Access:{Client.ToString}  Count:{Client.Dic.Count} CTB[{CTB}]")
                            Dim MRES As New Threading.ManualResetEventSlim(False)
                            Dim DstSocket As Socket = Nothing
                            Dim RevTask As New Threading.Tasks.Task(
                            Sub()
+                               If LogRevSize Then DRB += 1 : Log.AppendLogOnThread($"[DRB] {DRB}")
                                Dim buffer As Byte() = New Byte(RevBufferSize) {}
                                Do While (Socket.Connected)
                                    Try
                                        Dim l = Socket.Receive(buffer, 0, buffer.Length, SocketFlags.None)
-                                       If LogRevSize Then Log.AppendLogOnThread($"Rev:{l}  From:{Client.IP}")
-                                       If l = 0 Then Throw New SocketException("Empty Data")
+                                       If LogRevSize Then Log.AppendLogOnThread($"[DR]Rev:{l}  From:{Client.IP}")
+                                       If l = 0 Then Throw New SocketException(SocketError.NoData)
                                        Client.AddDateRev(l)
                                        If DstSocket Is Nothing Then
                                            DstSocket = New Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
-                                           DstSocket.Connect(Net.IPAddress.Parse("127.0.0.1"), DstPort)
+                                           DstSocket.Connect(Net.IPAddress.Parse(DstIP), DstPort)
                                        End If
                                        MRES.Set()
                                        DstSocket.Send(buffer, l, SocketFlags.None)
                                    Catch ex As Exception
+                                       If LogRevSize Then Log.AppendLogOnThread($"[DR]Err:{ex.Message}")
                                        Socket.Close()
                                        DstSocket.Close()
                                    End Try
                                Loop
+                               If LogRevSize Then DRE += 1 : Log.AppendLogOnThread($"[DRE] {DRE}")
                            End Sub)
                            Dim SndTask As New Threading.Tasks.Task(
                            Sub()
+                               If LogSndSize Then DSB += 1 : Log.AppendLogOnThread($"[DSB] {DSB}")
                                MRES.Wait()
                                Dim buffer As Byte() = New Byte(SndBufferSize) {}
                                Do While (DstSocket.Connected)
                                    Try
                                        Dim l = DstSocket.Receive(buffer, 0, buffer.Length, SocketFlags.None)
-                                       If l = 0 Then Throw New SocketException("Empty Data")
+                                       If l = 0 Then Throw New SocketException(SocketError.NoData)
                                        Client.AddDateSnd(l)
                                        Socket.Send(buffer, l, SocketFlags.None)
-                                       If LogSndSize Then Log.AppendLogOnThread($"Snd:{l}  To:{Client.IP}")
+                                       If LogSndSize Then Log.AppendLogOnThread($"[DS]Snd:{l}  To:{Client.IP}")
                                    Catch ex As Exception
+                                       If LogSndSize Then Log.AppendLogOnThread($"[DS]Err:{ex.Message}")
                                        Socket.Close()
                                        DstSocket.Close()
                                    End Try
                                Loop
+                               If LogSndSize Then DSE += 1 : Log.AppendLogOnThread($"[DSE] {DSE}")
                            End Sub)
                            RevTask.Start()
                            SndTask.Start()
@@ -164,8 +190,9 @@ Public Class Frm_Main
                                DstSocket.Close()
                                DstSocket.Dispose()
                            End If
+                           MRES.Set()
                            MRES.Dispose()
-                           If LogClose Then Log.AppendLogOnThread($"Closed: {Client.ToString} ")
+                           If LogClose Then ETE += 1 : Log.AppendLogOnThread($"[ET]Closed: {Client.ToString} ETE[{ETE}]")
                        End If
                    End Sub
         Task.BeginInvoke(Nothing, Nothing)

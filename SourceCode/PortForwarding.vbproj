@@ -62,6 +62,9 @@
     <Reference Include="Sy.UI">
       <HintPath>..\Lib\Sy.UI.dll</HintPath>
     </Reference>
+    <Reference Include="Sy.UnhandleException.Controller">
+      <HintPath>..\..\..\yimiProjects\yimiLib\Sy.UnhandleException.Controller.dll</HintPath>
+    </Reference>
     <Reference Include="SyLib">
       <HintPath>..\Lib\SyLib.dll</HintPath>
     </Reference>

@@ -19,21 +19,23 @@ Public Class Client
     End Function
     Private Sub AddVisit()
         Count += 1
-        Dim n = Now
-        If Not _IsDefense Then
-            If n.Ticks - LastTime.Ticks < 10000000 Then
+        Dim CurTime = Now
+        If Not IsDefense Then
+            '软防CC 只要规则写的骚 怎么都没事
+            If CurTime.Ticks - LastTime.Ticks < 10000000 Then 'Tick单位是1/10微秒? 
                 DefenseCount += 1
-                If DefenseCount > 100 Then _IsDefense = True '访问间隔小于1秒 持续100次 开启防御
+                If DefenseCount > 100 Then IsDefense = True '访问间隔小于1秒 持续100次 开启防御
             Else
                 DefenseCount = 0 '清空准备防御计数
             End If
+            '软防D 对方带宽大的话只能硬防  这个就拼成本  没办法的
             If Count Mod 10 = 0 Then '每N次检测下平均数据量
-                If LastDateCount / 10 < 1024 Then _IsDefense = True '访问10次数据量平均小于1k 开启防御
+                If LastDateCount / 10 < 1024 Then IsDefense = True '访问10次数据量平均小于1k 开启防御
                 LastDateRev = 0 '清空最后访问接受字节计数
                 LastDateSnd = 0 '清空最后访问发送字节计数
             End If
         End If
-        LastTime = n
+        LastTime = CurTime
     End Sub
     Public Sub AddDateRev(Len As Integer)
         LastDateRev += Len
@@ -74,17 +76,9 @@ Public Class Client
 
     Private DefenseCount As Integer = 0
     Public DefenseTimes As Integer = 0
-    Private _IsDefense As Boolean = False
-    Public Property IsDefense As Boolean
-        Set(value As Boolean)
-            _IsDefense = value
-        End Set
-        Get
-            Return _IsDefense
-        End Get
-    End Property
+    Public Property IsDefense As Boolean = False
     Friend Function CheckDefense() As Boolean
-        If _IsDefense Then DefenseTimes += 1
-        Return _IsDefense
+        If IsDefense Then DefenseTimes += 1
+        Return IsDefense
     End Function
 End Class

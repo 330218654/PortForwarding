@@ -62,6 +62,8 @@ Partial Class Frm_Main
         Me.CMH_LastTime = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Log = New Sy.UI.Control.TextBox()
+        Me.Txt_Src = New System.Windows.Forms.TextBox()
+        Me.Txt_Dst = New System.Windows.Forms.TextBox()
         CType(Me.NUD_Src, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NUD_Dst, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NUD_SndBufferSize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,16 +75,16 @@ Partial Class Frm_Main
         '
         'Btn_Start
         '
-        Me.Btn_Start.Location = New System.Drawing.Point(483, 12)
+        Me.Btn_Start.Location = New System.Drawing.Point(571, 12)
         Me.Btn_Start.Name = "Btn_Start"
-        Me.Btn_Start.Size = New System.Drawing.Size(220, 58)
+        Me.Btn_Start.Size = New System.Drawing.Size(132, 58)
         Me.Btn_Start.TabIndex = 41
         Me.Btn_Start.Text = Global.PortForwarding.My.Resources.Resources.Btn_Start_Text_Start
         Me.Btn_Start.UseVisualStyleBackColor = True
         '
         'NUD_Src
         '
-        Me.NUD_Src.Location = New System.Drawing.Point(43, 17)
+        Me.NUD_Src.Location = New System.Drawing.Point(167, 17)
         Me.NUD_Src.Maximum = New Decimal(New Integer() {65535, 0, 0, 0})
         Me.NUD_Src.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NUD_Src.Name = "NUD_Src"
@@ -94,7 +96,7 @@ Partial Class Frm_Main
         'NUD_Dst
         '
         Me.NUD_Dst.AccessibleRole = System.Windows.Forms.AccessibleRole.None
-        Me.NUD_Dst.Location = New System.Drawing.Point(43, 47)
+        Me.NUD_Dst.Location = New System.Drawing.Point(167, 49)
         Me.NUD_Dst.Maximum = New Decimal(New Integer() {65535, 0, 0, 0})
         Me.NUD_Dst.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NUD_Dst.Name = "NUD_Dst"
@@ -126,7 +128,7 @@ Partial Class Frm_Main
         Me.Chk_LogRevSize.AutoSize = True
         Me.Chk_LogRevSize.Checked = True
         Me.Chk_LogRevSize.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.Chk_LogRevSize.Location = New System.Drawing.Point(393, 19)
+        Me.Chk_LogRevSize.Location = New System.Drawing.Point(466, 19)
         Me.Chk_LogRevSize.Name = "Chk_LogRevSize"
         Me.Chk_LogRevSize.Size = New System.Drawing.Size(84, 16)
         Me.Chk_LogRevSize.TabIndex = 47
@@ -138,7 +140,7 @@ Partial Class Frm_Main
         Me.Chk_LogSndSize.AutoSize = True
         Me.Chk_LogSndSize.Checked = True
         Me.Chk_LogSndSize.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.Chk_LogSndSize.Location = New System.Drawing.Point(393, 49)
+        Me.Chk_LogSndSize.Location = New System.Drawing.Point(466, 49)
         Me.Chk_LogSndSize.Name = "Chk_LogSndSize"
         Me.Chk_LogSndSize.Size = New System.Drawing.Size(90, 16)
         Me.Chk_LogSndSize.TabIndex = 48
@@ -150,7 +152,7 @@ Partial Class Frm_Main
         Me.Chk_LogClose.AutoSize = True
         Me.Chk_LogClose.Checked = True
         Me.Chk_LogClose.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.Chk_LogClose.Location = New System.Drawing.Point(303, 49)
+        Me.Chk_LogClose.Location = New System.Drawing.Point(382, 48)
         Me.Chk_LogClose.Name = "Chk_LogClose"
         Me.Chk_LogClose.Size = New System.Drawing.Size(72, 16)
         Me.Chk_LogClose.TabIndex = 49
@@ -160,7 +162,7 @@ Partial Class Frm_Main
         'Lab_SndBufSize
         '
         Me.Lab_SndBufSize.AutoSize = True
-        Me.Lab_SndBufSize.Location = New System.Drawing.Point(124, 51)
+        Me.Lab_SndBufSize.Location = New System.Drawing.Point(231, 51)
         Me.Lab_SndBufSize.Name = "Lab_SndBufSize"
         Me.Lab_SndBufSize.Size = New System.Drawing.Size(77, 12)
         Me.Lab_SndBufSize.TabIndex = 51
@@ -168,11 +170,11 @@ Partial Class Frm_Main
         '
         'NUD_SndBufferSize
         '
-        Me.NUD_SndBufferSize.Location = New System.Drawing.Point(198, 47)
+        Me.NUD_SndBufferSize.Location = New System.Drawing.Point(305, 47)
         Me.NUD_SndBufferSize.Maximum = New Decimal(New Integer() {65535, 0, 0, 0})
         Me.NUD_SndBufferSize.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NUD_SndBufferSize.Name = "NUD_SndBufferSize"
-        Me.NUD_SndBufferSize.Size = New System.Drawing.Size(80, 21)
+        Me.NUD_SndBufferSize.Size = New System.Drawing.Size(65, 21)
         Me.NUD_SndBufferSize.TabIndex = 50
         Me.NUD_SndBufferSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.NUD_SndBufferSize.Value = New Decimal(New Integer() {1, 0, 0, 0})
@@ -182,7 +184,7 @@ Partial Class Frm_Main
         Me.Chk_LogAccept.AutoSize = True
         Me.Chk_LogAccept.Checked = True
         Me.Chk_LogAccept.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.Chk_LogAccept.Location = New System.Drawing.Point(303, 19)
+        Me.Chk_LogAccept.Location = New System.Drawing.Point(382, 18)
         Me.Chk_LogAccept.Name = "Chk_LogAccept"
         Me.Chk_LogAccept.Size = New System.Drawing.Size(78, 16)
         Me.Chk_LogAccept.TabIndex = 52
@@ -192,7 +194,7 @@ Partial Class Frm_Main
         'Lab_RevBufSize
         '
         Me.Lab_RevBufSize.AutoSize = True
-        Me.Lab_RevBufSize.Location = New System.Drawing.Point(124, 21)
+        Me.Lab_RevBufSize.Location = New System.Drawing.Point(231, 21)
         Me.Lab_RevBufSize.Name = "Lab_RevBufSize"
         Me.Lab_RevBufSize.Size = New System.Drawing.Size(77, 12)
         Me.Lab_RevBufSize.TabIndex = 54
@@ -200,11 +202,11 @@ Partial Class Frm_Main
         '
         'NUD_RevBufferSize
         '
-        Me.NUD_RevBufferSize.Location = New System.Drawing.Point(198, 17)
+        Me.NUD_RevBufferSize.Location = New System.Drawing.Point(305, 17)
         Me.NUD_RevBufferSize.Maximum = New Decimal(New Integer() {65535, 0, 0, 0})
         Me.NUD_RevBufferSize.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NUD_RevBufferSize.Name = "NUD_RevBufferSize"
-        Me.NUD_RevBufferSize.Size = New System.Drawing.Size(80, 21)
+        Me.NUD_RevBufferSize.Size = New System.Drawing.Size(65, 21)
         Me.NUD_RevBufferSize.TabIndex = 53
         Me.NUD_RevBufferSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.NUD_RevBufferSize.Value = New Decimal(New Integer() {1, 0, 0, 0})
@@ -454,12 +456,30 @@ Partial Class Frm_Main
         Me.Log.Size = New System.Drawing.Size(851, 503)
         Me.Log.TabIndex = 0
         '
+        'Txt_Src
+        '
+        Me.Txt_Src.Location = New System.Drawing.Point(45, 18)
+        Me.Txt_Src.Name = "Txt_Src"
+        Me.Txt_Src.Size = New System.Drawing.Size(116, 21)
+        Me.Txt_Src.TabIndex = 57
+        Me.Txt_Src.Text = "0.0.0.0"
+        '
+        'Txt_Dst
+        '
+        Me.Txt_Dst.Location = New System.Drawing.Point(45, 49)
+        Me.Txt_Dst.Name = "Txt_Dst"
+        Me.Txt_Dst.Size = New System.Drawing.Size(116, 21)
+        Me.Txt_Dst.TabIndex = 57
+        Me.Txt_Dst.Text = "172.31.7.164"
+        '
         'Frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(851, 582)
         Me.Controls.Add(Me.GPB_ManagerClient)
+        Me.Controls.Add(Me.Txt_Dst)
+        Me.Controls.Add(Me.Txt_Src)
         Me.Controls.Add(Me.NUD_Dst)
         Me.Controls.Add(Me.NUD_Src)
         Me.Controls.Add(Me.Btn_Manager)
@@ -530,4 +550,6 @@ Partial Class Frm_Main
     Private WithEvents Num_Count As NumericUpDown
     Private WithEvents Btn_Import As Button
     Private WithEvents Btn_Export As Button
+    Friend WithEvents Txt_Src As TextBox
+    Friend WithEvents Txt_Dst As TextBox
 End Class
